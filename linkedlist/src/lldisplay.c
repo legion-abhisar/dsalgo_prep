@@ -23,7 +23,7 @@ void Create(int A[], int n)
 
     for(i = 1; i < n; i++)      // For loop to iterate through array and create nodes.
     {
-        t = (struct Node *)malloc(sizeof(struct Node)); // Creating node.
+        t = (struct Node *)malloc(sizeof(struct Node)); // Creating structure node in heap.
         t->data = A[i];         // Assigning data to the node.
         t->next = NULL;         // Assigning next pointer to the node.
         last->next = t;         // Here last node points to t (new node).
@@ -41,6 +41,25 @@ void Display(struct Node *p)
     }
 }
 
+// Function to display linked list recursively
+void DisplayRecurrsive(struct Node *p)
+{
+    if (p != NULL)
+    {
+        printf("%d ", p->data);
+        DisplayRecurrsive(p->next);
+    }
+}
+
+void DisplayRecurrsiveReverse(struct Node *p)
+{
+    if (p != NULL)
+    {
+        DisplayRecurrsiveReverse(p->next);
+        printf("%d ", p->data);
+    }
+}
+
 int main()
 {
     int A[] = {3,5,7,10,15};
@@ -48,6 +67,10 @@ int main()
     Create(A, 5);
 
     Display(first);
+    printf("\n");
+    DisplayRecurrsive(first);
+    printf("\n");
+    DisplayRecurrsiveReverse(first);
 
     return 0;
 }
