@@ -2,7 +2,13 @@
 
 using namespace std;
 
-class Employee {
+// Abstract class with virtual function
+class AbstractEmployee {
+    // Virtual method
+    virtual void AskForPromotion() = 0;
+};
+
+class Employee:AbstractEmployee {
 private:
     string Name;
     string Company;
@@ -40,6 +46,13 @@ public:
         cout << "Age: " << Age << endl;
     }
 
+    void AskForPromotion() {
+        if (Age > 30) 
+            cout << Name << " got promoted." << endl;
+        else
+            cout << Name << " denied promotion." << endl;
+    }
+
     // Default constructor
     Employee(string name, string company, int age) {
         Name = name;
@@ -51,15 +64,11 @@ public:
 int main()
 {
     Employee employee1 = Employee("Abhisar", "ABC", 25);
-    employee1.IntroduceYourself();
 
-    employee1.setName("Sandeep");
-    employee1.setCompany("WBC");
-    employee1.setAge(30);
-    employee1.IntroduceYourself();
+    Employee employee2 = Employee("Asit", "XYZ", 31);
 
-    Employee employee2 = Employee("Asit", "XYZ", 26);
-    employee2.IntroduceYourself();
+    employee1.AskForPromotion();
+    employee2.AskForPromotion();
 
     return 0;
     
